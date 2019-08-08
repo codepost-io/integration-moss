@@ -1,10 +1,10 @@
-#  Usage: python3 processMossResults.py MOSSURL threshold
+#  Usage: python3 processMossResults.py MossURL threshold
 #
-#  NOTE: This script only works if the files uploaded to MOSS are of the format
+#  NOTE: This script only works if the files uploaded to Moss are of the format
 #        '/tmp/<submissionID>_<student(s)>/<fileName>'
 #
-#  This script takes a MOSS URL and a similarity threshold for which to report plagiarism and:
-#     1. Gets the results from the <MOSS URL>, which compares items with the syntax:
+#  This script takes a Moss URL and a similarity threshold for which to report plagiarism and:
+#     1. Gets the results from the <Moss URL>, which compares items with the syntax:
 #           '/tmp/<submissionID>_<student(s)>/<fileName>'
 #     2. Processes the results to find the set of (submissionID1, submissionID2, similarity) tuples
 #        where similarity >= threshold
