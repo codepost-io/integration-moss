@@ -29,7 +29,7 @@ def restricted_float(x):
     return x
 
 parser.add_argument('mossURL', help='URL of MOSS Results')
-parser.add_argument('threshold', type=restricted_float, help='A percentage similarity threshold. e.g., 50% similarity, put in a threshold of .5')
+parser.add_argument('threshold', type=restricted_float, help='A percentage similarity threshold. e.g., 50% = .5')
 
 args = parser.parse_args()
 
