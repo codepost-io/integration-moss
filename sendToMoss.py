@@ -5,7 +5,7 @@
 #  NOTE: Before running this, please edit the codePost API key, courseName, and coursePeriod constants
 #
 #
-#  Usage: python3 sendToMoss.py assignmentName [-m] "[optional MOSS arguments]"
+#  Usage: python3 sendToMoss.py assignmentName [-m] "[optional Moss arguments]"
 #
 #    assignmentName is the name of the assignment on codePost to check code similarity for
 #
@@ -20,8 +20,8 @@
 #    The script does the following:
 #       1. Gets all the submissions of <assignmentName> and saves them in a temp directory,
 #           in the format /tmp/<submissionID>_<students/*
-#       2. Sends the submissions to MOSS along with the optional MOSS arguments
-#       3. Prints out the MOSS result link in the console
+#       2. Sends the submissions to Moss along with the optional Moss arguments
+#       3. Prints out the Moss result link in the console
 
 import argparse
 import codepost
@@ -35,7 +35,7 @@ courseName="<YOUR CODEPOST COURSE NAME HERE>"
 coursePeriod="<YOUR CODEPOST COURSE PERIOD HERE>"
 
 ##################### Argument Parsing ######################################################
-parser = argparse.ArgumentParser(description='Working with MOSS!')
+parser = argparse.ArgumentParser(description='Working with Moss!')
 parser.add_argument('assignmentName', help='Assignment Name')
 parser.add_argument('-m','--m', nargs='*', help='Optional moss arguments')
 args = parser.parse_args()
@@ -67,7 +67,7 @@ def getSubmissions(assignmentID):
             file.write(f.code)
             file.close()
 
-# Send the submissions to MOSS
+# Send the submissions to Moss
 # If everything works correctly, a link will be outputted to the console
 def runMossCheck():
     directories = [x[0]+'/*' for x in os.walk('./tmp') if x[0] != './tmp']
