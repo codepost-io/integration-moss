@@ -15,4 +15,11 @@ Notes:
   for a full list of the languages supported by Moss. 
 
 ## 2. Sending Submissions From codePost to Moss:
-Usage: `python3 sendToMoss.py assignmentName [-m] "[optional Moss arguments]"`
+Usage: `python3 processMossResults.py MOSSURL threshold"`
+      - This gets the results at the MOSSURL, and creates an comment on every pair of submissions `(sub1, sub2)` where:
+            `codeSimilarity(sub1, sub2) >= threshold`
+Notes:
+1. This script assumes that the directories uploaded to MOSS are of the format: `/tmp/<submissionID>_<student(s)>/<fileName>`.
+   If you're using this to process the results from `sendToMoss.py`, then you don't have to worry about this. 
+   But if you plan to use this script separately, then you'll want to modify `processMossResults.py` to edit the regex
+   matching to meet your file name. 
