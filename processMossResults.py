@@ -19,7 +19,7 @@ import codepost
 codepost.configure_api_key("<YOUR API KEY HERE>")
 
 ##################### Argument Parsing ######################################################
-parser = argparse.ArgumentParser(description='Working with MOSS!')
+parser = argparse.ArgumentParser(description='Working with Moss!')
 
 # argument parser for similarity thresholds
 def restricted_float(x):
@@ -28,7 +28,7 @@ def restricted_float(x):
         raise argparse.ArgumentTypeError("%r not in range [0.0, 1.0]"%(x,))
     return x
 
-parser.add_argument('mossURL', help='URL of MOSS Results')
+parser.add_argument('mossURL', help='URL of Moss Results')
 parser.add_argument('threshold', type=restricted_float, help='A percentage similarity threshold. e.g., 50% = .5')
 
 args = parser.parse_args()
