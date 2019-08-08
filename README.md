@@ -14,7 +14,7 @@ Notes:
   if your files are java, you would do the following `python3 sendToMoss.py assignmentName -m "-l java"`. See `moss.pl`
   for a full list of the languages supported by Moss. 
 
-## 2. Sending Submissions From codePost to Moss:
+## 2. Processing MOSS results and creating comments on codePost
 Usage: `python3 processMossResults.py MOSSURL threshold"`
       - This gets the results at the MOSSURL, and creates an comment on every pair of submissions `(sub1, sub2)` where:
             `codeSimilarity(sub1, sub2) >= threshold`
