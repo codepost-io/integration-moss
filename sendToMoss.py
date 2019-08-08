@@ -50,7 +50,7 @@ def getAssignment(courseName, coursePeriod, assignmentName):
     assignments = [codepost.assignment.retrieve(id=a_id) for a_id in course.assignments]
     assignment = [a for a in assignments if a.name == assignmentName]
     if len(assignment) == 0:
-        raise Exception("Assignment does not exist!")
+        raise Exception("Assignment with name %s doesn't exist in %s | %s" % (assignmentName, courseName, coursePeriod))
     return assignment[0]
 
 # Get all the submissions of the given assignment, and save them to a local temp folder
