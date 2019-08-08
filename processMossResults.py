@@ -55,7 +55,7 @@ def addComment(submissionID1, submissionID2, similarity):
 
     # create a comment on the first file of that submission
     my_comment = codepost.comment.create(
-      text="FLAG: High level of code similarity with another submission. {}% similarity with submission id {}".format(similarity, submissionID2),
+      text="FLAG: Potential plagiarism detected. {}% similarity with submission id {}".format(similarity, submissionID2),
       startChar=1,
       endChar=1,
       startLine=1,
