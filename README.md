@@ -1,5 +1,5 @@
 # Moss-integration
-This is a set of short scripts that can be used to connect [Moss](https://theory.stanford.edu/~aiken/moss/) with codePost. Moss is a tool for assessing similarity between programs provided as an internet service by Stanford University and commonly used to detect instances of plagiarism in programming courses.
+This is a set of short scripts that can be used to connect [Moss](https://theory.stanford.edu/~aiken/moss/) with [codePost](https://codepost.io). Moss is a tool for assessing similarity between programs provided as an internet service by Stanford University and commonly used to detect instances of plagiarism in programming courses.
 
 ## 1. Sending Submissions From codePost to Moss:
 Use `sendToMoss.py` to send the submissions corresponding to a single codePost assignment to Moss for processing. To do this, run
