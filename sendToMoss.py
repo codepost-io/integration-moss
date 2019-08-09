@@ -1,27 +1,26 @@
 #  NOTE: In order to run this script, you must have the moss.pl file in the same diretory.
-#        You can get this by reaching out to moss@moss.stanford.edu with the following email content:
+#        You can obtain this file by emailing moss@moss.stanford.edu with the following email content:
 #               registeruser
 #               email
-#  NOTE: Before running this, please edit the codePost API key, courseName, and coursePeriod constants
+#  NOTE: Before running this script, edit the codePost API key, courseName, and coursePeriod constants.
 #
+#  Usage: python3 sendToMoss.py <assignmentName> [-m] "[optional Moss arguments]"
 #
-#  Usage: python3 sendToMoss.py assignmentName [-m] "[optional Moss arguments]"
-#
-#    assignmentName is the name of the assignment on codePost to check code similarity for
+#    <assignmentName> is the name of the assignment on codePost for which you want to assess code similarity
 #
 #    There are other moss arguments that you can pass in after -m (in quotes).
-#    These can be seen in the moss.pl documentation.
+#    These can be seen in the moss.pl documentation or in the .README of this repo.
 #
-#    For example, you can do the following:
+#    For example, you can run the following:
 #       python3 sendToMoss.py assignmentName -m "-l java"
-#    This will tell moss that you are sending .java files. When it knows the language,
-#       the plagiarism detection will be more accurate vs. parsing as text files.
+#    This will tell Moss that you are sending .java files. When Moss knows the language of the input code,
+#       it will produce more accurate similarity scores.
 #
-#    The script does the following:
-#       1. Gets all the submissions of <assignmentName> and saves them in a temp directory,
+#    This script does the following:
+#       1. Gathers all the submissions of <assignmentName> and saves them in a temp directory,
 #           in the format /tmp/<submissionID>_<students/*
-#       2. Sends the submissions to Moss along with the optional Moss arguments
-#       3. Prints out the Moss result link in the console
+#       2. Sends the submissions to Moss along with any optional Moss arguments provided.
+#       3. Prints the Moss result link to the console.
 
 import argparse
 import codepost
@@ -51,7 +50,7 @@ def getAssignment(courseName, coursePeriod, assignmentName):
     assignments = [codepost.assignment.retrieve(id=a_id) for a_id in course.assignments]
     assignment = [a for a in assignments if a.name == assignmentName]
     if len(assignment) == 0:
-        raise Exception("Assignment does not exist!")
+        raise Exception("Assignment with name %s doesn't exist in %s | %s" % (assignmentName, courseName, coursePeriod))
     return assignment[0]
 
 # Get all the submissions of the given assignment, and save them to a local temp folder

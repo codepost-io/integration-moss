@@ -7,9 +7,9 @@
 #     1. Gets the results from the <Moss URL>, which compares items with the syntax:
 #           '/tmp/<submissionID>_<student(s)>/<fileName>'
 #     2. Processes the results to find the set of (submissionID1, submissionID2, similarity) tuples
-#        where similarity >= threshold
+#        for which similarity >= threshold
 #     3. Adds a comment to the first files of submissionID1 and submissionID2 with a comment to
-#       flag the detected plagiarism
+#       flag that the similarity between submission1 and submission2 exceeded the specified threshold
 
 import pandas as pd
 import re
@@ -19,7 +19,7 @@ import codepost
 codepost.configure_api_key("<YOUR API KEY HERE>")
 
 ##################### Argument Parsing ######################################################
-parser = argparse.ArgumentParser(description='Working with MOSS!')
+parser = argparse.ArgumentParser(description='Working with Moss!')
 
 # argument parser for similarity thresholds
 def restricted_float(x):
@@ -28,7 +28,7 @@ def restricted_float(x):
         raise argparse.ArgumentTypeError("%r not in range [0.0, 1.0]"%(x,))
     return x
 
-parser.add_argument('mossURL', help='URL of MOSS Results')
+parser.add_argument('mossURL', help='URL of Moss Results')
 parser.add_argument('threshold', type=restricted_float, help='A percentage similarity threshold. e.g., 50% = .5')
 
 args = parser.parse_args()
@@ -55,7 +55,7 @@ def addComment(submissionID1, submissionID2, similarity):
 
     # create a comment on the first file of that submission
     my_comment = codepost.comment.create(
-      text="FLAG: High level of code similarity with another submission. {}% similarity with submission id {}".format(similarity, submissionID2),
+      text="FLAG: Potential plagiarism detected. {}% similarity with submission id {}".format(similarity, submissionID2),
       startChar=1,
       endChar=1,
       startLine=1,
