@@ -50,8 +50,8 @@ def addComment(submissionID1, submissionID2, similarity):
     """
     Adds comments to the first file of a submission, noting that there was plagiarism detected in this submission
     """
-    sub = codepost.submission.retrieve(id=int(submissionID1))  # get the student's submission
-    fileID = sub.files[0]    # get the id of the first file from the submissions
+    sub = codepost.submission.retrieve(id=int(submissionID1)) # get the student's submission
+    fileID = sub.files[0].id # get the id of the first file from the submissions
 
     # create a comment on the first file of that submission
     my_comment = codepost.comment.create(

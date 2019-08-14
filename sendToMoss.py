@@ -42,28 +42,27 @@ args = parser.parse_args()
 ##################### Helper Functions ######################################################
 # get the assignment from codePost based on the couseName, coursePeriod, and assignmentName
 def getAssignment(courseName, coursePeriod, assignmentName):
-    courses = list(codepost.course.list_available(name=courseName, period=coursePeriod))
+    courses = codepost.course.list_available(name=courseName, period=coursePeriod)
     if len(courses) == 0:
         raise Exception("Course does not exist!")
     course = courses[0]
 
-    assignments = [codepost.assignment.retrieve(id=a_id) for a_id in course.assignments]
-    assignment = [a for a in assignments if a.name == assignmentName]
-    if len(assignment) == 0:
+    assignment = course.assignments.by_name(name=assignmentName)
+    if assignment is None:
         raise Exception("Assignment with name %s doesn't exist in %s | %s" % (assignmentName, courseName, coursePeriod))
-    return assignment[0]
+
+    return assignment
 
 # Get all the submissions of the given assignment, and save them to a local temp folder
-def getSubmissions(assignmentID):
-    submissions = codepost.assignment.list_submissions(id=assignmentID)
+def getSubmissions(assignment):
+    submissions = assignment.list_submissions()
     os.mkdir('tmp')
     for s in submissions:
         folderName = '{}_'.format(s.id) + ''.join(s.students)
         os.mkdir('tmp/{}'.format(folderName))
-        for fID in s.files:
-            f = codepost.file.retrieve(id=fID)
-            file = open('tmp/{}/{}'.format(folderName,f.name), "w")
-            file.write(f.code)
+        for file_obj in s.files:
+            file = open('tmp/{}/{}'.format(folderName,file_obj.name), "w")
+            file.write(file_obj.code)
             file.close()
 
 # Send the submissions to Moss
@@ -78,7 +77,7 @@ def runMossCheck():
 
 ##################### Main  ######################################################
 assignment = getAssignment(courseName, coursePeriod, args.assignmentName)
-subs = getSubmissions(assignment.id)
+subs = getSubmissions(assignment)
 try:
     runMossCheck()
     shutil.rmtree('./tmp') # delete tmp folder when complete
