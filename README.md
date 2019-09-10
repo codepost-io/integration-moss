@@ -1,4 +1,8 @@
-# Moss-integration
+# Integrating with Moss
+
+>>>
+**Update:** You can now run these scripts directly from codePost! Make sure you have your Moss ID and go to `Assignments` -> `Actions` -> `Check Moss`. See an example [here](https://cl.ly/18373eb043bf).
+
 This is a set of short scripts that can be used to connect [Moss](https://theory.stanford.edu/~aiken/moss/) with [codePost](https://codepost.io). Moss is a tool for assessing similarity between programs provided as an internet service by Stanford University and commonly used to detect instances of plagiarism in programming courses. See a video overview of these scripts in action [here](https://codepost.wistia.com/medias/4fe8oc5ijg). 
 
 ## 1. Sending Submissions From codePost to Moss:
